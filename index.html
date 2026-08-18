@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Phiếu Thực Hành Khúc Xạ Mắt</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body
+  class="bg-slate-50 text-slate-900 min-h-screen flex flex-col antialiased select-none sm:select-auto overflow-x-hidden">
+
+  <!-- TOP HEADER -->
+  <header class="bg-blue-600 text-white shadow-md sticky top-0 z-40">
+    <div class="max-w-4xl mx-auto px-3 py-2 sm:py-3 flex items-center justify-between">
+      <div class="flex items-center space-x-1.5">
+        <span class="text-lg sm:text-xl">👁️</span>
+        <h1 class="text-sm sm:text-lg font-bold tracking-tight">Phiếu Khúc Xạ Mắt - K38</h1>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN APP CONTAINER -->
+  <main class="flex-1 max-w-4xl w-full mx-auto p-1.5 sm:p-4 flex flex-col justify-start overflow-x-hidden">
+
+    <!-- ============================================== -->
+    <!-- MÀN HÌNH 1: TRANG CHỦ & NHẬP TÊN BỆNH NHÂN      -->
+    <!-- ============================================== -->
+    <section id="screen-home" class="app-screen flex-1 flex flex-col justify-start space-y-3">
+      <!-- Card Nhập ca mới -->
+      <div class="bg-white p-3.5 sm:p-5 rounded-2xl shadow-sm border border-slate-200">
+        <h2 class="text-xs sm:text-base font-extrabold text-slate-800 mb-1 flex items-center">
+          <span class="w-2 h-2 rounded-full bg-blue-600 inline-block mr-1.5"></span>
+          Tạo Ca Thực Hành Mới
+        </h2>
+
+        <form id="form-start-case" class="space-y-2.5">
+          <div>
+            <label for="patient-name-input"
+              class="block text-[10px] sm:text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+              Tên Bệnh Nhân
+            </label>
+            <input type="text" id="patient-name-input" placeholder="Ví dụ: Phùng Bá Duy"
+              class="w-full px-3 py-2 sm:py-2.5 text-xs sm:text-sm rounded-xl border-2 border-slate-200 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all font-medium text-slate-800"
+              autocomplete="off" required>
+          </div>
+          <button type="submit"
+            class="w-full py-2.5 sm:py-3 px-3 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold rounded-xl shadow-md shadow-blue-500/20 touch-press flex items-center justify-center space-x-1.5 text-xs sm:text-sm transition-all">
+            <span>Bắt Đầu Đo</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3">
+              </path>
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Card Danh sách ca trong session -->
+      <div class="bg-white p-3.5 rounded-2xl shadow-sm border border-slate-200 flex-1 flex flex-col">
+        <div class="flex items-center justify-between mb-2.5">
+          <div class="flex items-center space-x-1.5">
+            <h3 class="text-xs sm:text-sm font-bold text-slate-800">Các Ca Đã Làm</h3>
+            <span id="cases-count-badge"
+              class="text-[10px] sm:text-xs bg-slate-100 text-slate-600 font-bold px-2 py-0.5 rounded-full">0 ca</span>
+          </div>
+          <button id="btn-clear-all-cases" type="button"
+            class="text-[11px] text-rose-600 hover:text-rose-700 font-semibold hover:underline touch-press">
+            Xóa danh sách
+          </button>
+        </div>
+
+        <div id="session-cases-list" class="space-y-2 flex-1 overflow-y-auto max-h-80">
+          <!-- Render danh sách ca bằng JS -->
+        </div>
+
+        <div id="empty-cases-state" class="py-5 text-center text-slate-400">
+          <span class="text-xl block mb-1">📝</span>
+          <p class="text-xs">Chưa có ca nào trong phiên làm việc này.<br>Nhập tên ở trên để bắt đầu!</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================== -->
+    <!-- MÀN HÌNH 2: CHỌN LOẠI PHIẾU KHÁM (GỌN GÀNG, KHÔNG TRỐNG) -->
+    <!-- ======================================================== -->
+    <section id="screen-choose-form" class="app-screen hidden flex-1 flex flex-col space-y-2.5">
+      <!-- Thông tin bệnh nhân đang chọn -->
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-3 flex items-center justify-between shadow-sm">
+        <div class="min-w-0 pr-2">
+          <span class="text-[10px] font-bold text-blue-600 uppercase tracking-wider block">Bệnh nhân đang khám</span>
+          <h2 id="display-patient-name-choose" class="text-sm sm:text-base font-extrabold text-blue-950 truncate">--
+          </h2>
+        </div>
+        <div class="text-right flex-shrink-0">
+          <span id="display-case-time-choose" class="text-[11px] text-blue-700/80 font-mono block">--</span>
+          <button id="btn-back-to-home" type="button"
+            class="text-[11px] text-blue-700 font-bold hover:underline mt-0.5">
+            ← Đổi ca
+          </button>
+        </div>
+      </div>
+
+      <!-- 2 Thẻ Chọn Phiếu Thiết Kế Gọn Gàng, Vừa Vặn -->
+      <div class="space-y-2">
+        <!-- Nút chọn Phiếu 1: Chủ Quan -->
+        <button id="btn-select-chuquan" type="button"
+          class="w-full bg-white p-3 rounded-xl border-2 border-slate-200 hover:border-blue-500 active:border-blue-600 shadow-sm text-left touch-press transition-all flex items-center justify-between group">
+          <div class="flex items-center space-x-2.5 min-w-0 pr-2">
+            <span
+              class="w-9 h-9 flex-shrink-0 flex items-center justify-center text-xl bg-blue-50 rounded-lg group-hover:bg-blue-100 transition-colors">
+              📋
+            </span>
+            <div class="min-w-0 truncate">
+              <h3
+                class="text-xs sm:text-sm font-extrabold text-slate-800 group-hover:text-blue-600 transition-colors truncate">
+                Phiếu Thực Hành Chủ Quan
+              </h3>
+              <p class="text-[11px] text-slate-500 truncate mt-0.5">17 bước tuần tự (Đặt +1.00, Trục loạn, JCC...)</p>
+              <div id="badge-cq-status" class="mt-0.5"></div>
+            </div>
+          </div>
+          <div
+            class="w-6 h-6 flex-shrink-0 flex items-center justify-center text-blue-600 text-xs font-bold bg-blue-50 rounded-full group-hover:translate-x-0.5 transition-all">
+            ➔
+          </div>
+        </button>
+
+        <!-- Nút chọn Phiếu 2: Skiascopy -->
+        <button id="btn-select-skiascopy" type="button"
+          class="w-full bg-white p-3 rounded-xl border-2 border-slate-200 hover:border-indigo-500 active:border-indigo-600 shadow-sm text-left touch-press transition-all flex items-center justify-between group">
+          <div class="flex items-center space-x-2.5 min-w-0 pr-2">
+            <span
+              class="w-9 h-9 flex-shrink-0 flex items-center justify-center text-xl bg-indigo-50 rounded-lg group-hover:bg-indigo-100 transition-colors">
+              👁️
+            </span>
+            <div class="min-w-0 truncate">
+              <h3
+                class="text-xs sm:text-sm font-extrabold text-slate-800 group-hover:text-indigo-600 transition-colors truncate">
+                Phiếu Thực Hành Skiascopy
+              </h3>
+              <p class="text-[11px] text-slate-500 truncate mt-0.5">15 mục theo Area (KT 180°, KT 90°, Trung hòa...)</p>
+              <div id="badge-sk-status" class="mt-0.5"></div>
+            </div>
+          </div>
+          <div
+            class="w-6 h-6 flex-shrink-0 flex items-center justify-center text-indigo-600 text-xs font-bold bg-indigo-50 rounded-full group-hover:translate-x-0.5 transition-all">
+            ➔
+          </div>
+        </button>
+      </div>
+
+      <!-- Nút xem nhanh kết quả cuối cùng -->
+      <button id="btn-view-summary-from-choose" type="button"
+        class="hidden w-full py-2.5 px-3 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold rounded-xl shadow-md touch-press flex items-center justify-center space-x-1.5 text-xs sm:text-sm transition-all mt-1">
+        <span>📊 Xem Phiếu Hoàn Chỉnh</span>
+        <span>➔</span>
+      </button>
+    </section>
+
+
+    <!-- ======================================================== -->
+    <!-- MÀN HÌNH 3: ĐIỀN STEP-BY-STEP (CHỐNG TRÀN HOÀN TOÀN)     -->
+    <!-- ======================================================== -->
+    <section id="screen-stepper" class="app-screen hidden flex-1 flex flex-col w-full overflow-x-hidden">
+      <!-- Stepper Top Bar -->
+      <div class="bg-white border-b border-slate-200 p-2 rounded-t-xl flex items-center justify-between shadow-sm">
+        <button id="btn-back-to-form-choice" type="button"
+          class="text-[11px] font-bold text-slate-600 hover:text-blue-600 py-1 px-2 rounded-lg bg-slate-100 touch-press flex items-center space-x-1 flex-shrink-0">
+          <span>← Đổi Phiếu</span>
+        </button>
+
+        <div class="text-center truncate px-1 min-w-0">
+          <span id="current-patient-badge"
+            class="text-[10px] font-bold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded-full border border-blue-200 truncate inline-block max-w-[100px] sm:max-w-[200px]">--</span>
+          <div id="current-form-title" class="text-xs sm:text-sm font-extrabold text-slate-800 uppercase truncate">--
+          </div>
+        </div>
+
+        <button id="btn-view-final-result" type="button"
+          class="text-[11px] font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 py-1 px-2 rounded-lg touch-press flex items-center space-x-1 shadow-sm flex-shrink-0">
+          <span>Xem KQ ➔</span>
+        </button>
+      </div>
+
+      <!-- Stepper Main Content (Có min-w-0 chống tràn tuyệt đối) -->
+      <div
+        class="flex-1 bg-white rounded-b-xl border-x border-b border-slate-200 flex overflow-hidden shadow-sm w-full">
+
+        <!-- CỘT TRÁI: DANH SÁCH TAB CÁC BƯỚC -->
+        <div
+          class="w-24 sm:w-52 md:w-56 border-r border-slate-200 bg-slate-50 p-1 sm:p-1.5 overflow-y-auto mobile-stepper-container flex flex-col space-y-1 flex-shrink-0">
+          <div
+            class="text-[9px] sm:text-xs font-bold text-slate-600 uppercase tracking-wider px-0.5 pb-0.5 hidden sm:block">
+            Các Mục
+          </div>
+          <div id="left-stepper-list" class="space-y-1">
+            <!-- Danh sách tab được render bằng JS -->
+          </div>
+        </div>
+
+        <!-- CỘT PHẢI: KHU VỰC NHẬP LIỆU MP & MT + BÀN PHÍM (CHỐNG TRÀN VỚI min-w-0) -->
+        <div class="flex-1 min-w-0 p-1.5 sm:p-3 flex flex-col justify-between overflow-y-auto overflow-x-hidden">
+          <div>
+            <!-- Tiêu đề bước hiện tại -->
+            <div class="mb-1.5 sm:mb-2.5">
+              <div class="flex items-center space-x-1.5 mb-0.5 flex-wrap gap-y-0.5">
+                <span id="step-counter-badge"
+                  class="text-[10px] font-extrabold text-blue-600 bg-blue-100 px-2 py-0.5 rounded-full">Bước 1/17</span>
+                <span id="step-current-group"
+                  class="hidden text-[9px] font-bold text-slate-700 uppercase bg-slate-200 px-1.5 py-0.5 rounded">--</span>
+              </div>
+              <h2 id="step-current-title"
+                class="text-xs sm:text-base font-extrabold text-slate-900 leading-snug truncate">
+                --
+              </h2>
+            </div>
+
+            <!-- Box Nhập MP & MT (Chạm trực tiếp vào ô để chọn) -->
+            <div class="space-y-1.5 mb-2">
+              <!-- DÒNG MP -->
+              <div class="space-y-1 bg-slate-50 p-1.5 rounded-lg border border-slate-200 cursor-pointer"
+                onclick="document.getElementById('input-mp')?.focus()">
+                <div class="flex items-center space-x-1.5">
+                  <label for="input-mp"
+                    class="w-5 font-extrabold text-slate-800 text-xs sm:text-sm flex-shrink-0 text-center">
+                    MP
+                  </label>
+
+                  <!-- Quick Options Container for MP (shown when step has options) -->
+                  <div id="options-container-mp" class="hidden flex-1 grid grid-cols-3 gap-1 min-w-0"></div>
+
+                  <!-- Default Text Input for MP (shown when step has no options) -->
+                  <input type="text" id="input-mp" placeholder="Mắt phải"
+                    class="form-input-box flex-1 min-w-0 py-1 px-2 rounded-md text-slate-900 shadow-inner cursor-text text-xs sm:text-sm"
+                    autocomplete="off">
+                </div>
+
+                <!-- Custom Input for MP (shown when 'Khác' is selected in option mode) -->
+                <div id="custom-wrap-mp" class="hidden pl-6">
+                  <input type="text" id="input-custom-mp" placeholder="Nhập tùy ý MP..."
+                    class="form-input-box w-full py-1 px-2 text-[11px] sm:text-xs rounded-md cursor-text"
+                    autocomplete="off">
+                </div>
+              </div>
+
+              <!-- DÒNG MT -->
+              <div class="space-y-1 bg-slate-50 p-1.5 rounded-lg border border-slate-200 cursor-pointer"
+                onclick="document.getElementById('input-mt')?.focus()">
+                <div class="flex items-center space-x-1.5">
+                  <label for="input-mt"
+                    class="w-5 font-extrabold text-slate-800 text-xs sm:text-sm flex-shrink-0 text-center">
+                    MT
+                  </label>
+
+                  <!-- Quick Options Container for MT (shown when step has options) -->
+                  <div id="options-container-mt" class="hidden flex-1 grid grid-cols-3 gap-1 min-w-0"></div>
+
+                  <!-- Default Text Input for MT (shown when step has no options) -->
+                  <input type="text" id="input-mt" placeholder="Mắt trái"
+                    class="form-input-box flex-1 min-w-0 py-1 px-2 rounded-md text-slate-900 shadow-inner cursor-text text-xs sm:text-sm"
+                    autocomplete="off">
+                </div>
+
+                <!-- Custom Input for MT (shown when 'Khác' is selected in option mode) -->
+                <div id="custom-wrap-mt" class="hidden pl-6">
+                  <input type="text" id="input-custom-mt" placeholder="Nhập tùy ý MT..."
+                    class="form-input-box w-full py-1 px-2 text-[11px] sm:text-xs rounded-md cursor-text"
+                    autocomplete="off">
+                </div>
+              </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- BÀN PHÍM ẢO MÁY TÍNH KHÚC XẠ 6 CỘT                       -->
+            <!-- ========================================================= -->
+            <div class="optometry-keyboard mb-1.5 w-full">
+              <div class="space-y-0.5 text-center w-full">
+                <!-- HÀNG 1: Dấu & Ký hiệu trục + Backspace -->
+                <div class="grid grid-cols-6 gap-0.5 sm:gap-1">
+                  <button type="button" class="k-btn k-sym font-bold" data-key="+">+</button>
+                  <button type="button" class="k-btn k-sym font-bold" data-key="-">-</button>
+                  <button type="button" class="k-btn k-special font-bold" data-key="°">°</button>
+                  <button type="button" class="k-btn k-special font-bold" data-key="⁻">⁻</button>
+                  <button type="button" class="k-btn k-sym font-bold" data-key=" x ">x</button>
+                  <button type="button" id="kbtn-backspace" class="k-btn k-backspace" title="Xóa lùi">⌫</button>
+                </div>
+
+                <!-- HÀNG 2: Số 1-5 + Đơn vị D -->
+                <div class="grid grid-cols-6 gap-0.5 sm:gap-1">
+                  <button type="button" class="k-btn k-num" data-key="1">1</button>
+                  <button type="button" class="k-btn k-num" data-key="2">2</button>
+                  <button type="button" class="k-btn k-num" data-key="3">3</button>
+                  <button type="button" class="k-btn k-num" data-key="4">4</button>
+                  <button type="button" class="k-btn k-num" data-key="5">5</button>
+                  <button type="button" class="k-btn k-unit font-extrabold" data-key="D">D</button>
+                </div>
+
+                <!-- HÀNG 3: Số 6-0 + Dấu chấm -->
+                <div class="grid grid-cols-6 gap-0.5 sm:gap-1">
+                  <button type="button" class="k-btn k-num" data-key="6">6</button>
+                  <button type="button" class="k-btn k-num" data-key="7">7</button>
+                  <button type="button" class="k-btn k-num" data-key="8">8</button>
+                  <button type="button" class="k-btn k-num" data-key="9">9</button>
+                  <button type="button" class="k-btn k-num" data-key="0">0</button>
+                  <button type="button" class="k-btn k-num font-extrabold" data-key=".">.</button>
+                </div>
+
+                <!-- HÀNG 4: Ký tự phân cách + Dấu bằng + Phím Plano -->
+                <div class="grid grid-cols-6 gap-0.5 sm:gap-1">
+                  <button type="button" class="k-btn k-sym font-bold" data-key="/">/</button>
+                  <button type="button" class="k-btn k-sym font-bold" data-key="(">(</button>
+                  <button type="button" class="k-btn k-sym font-bold" data-key=")">)</button>
+                  <button type="button" class="k-btn k-sym font-bold" data-key="=">=</button>
+                  <!-- Phím Plano rộng 2 cột -->
+                  <button type="button" class="k-btn k-unit text-[10px] sm:text-xs font-bold col-span-2"
+                    data-key="Plano" title="Kính phẳng Plano">Plano</button>
+                </div>
+
+                <!-- HÀNG 5: 4 Bước nhảy Diop thông minh (.25, .50, .75, .00) -->
+                <div class="grid grid-cols-4 gap-0.5 sm:gap-1">
+                  <button type="button" class="k-btn k-diopter py-1" data-diopter=".25">.25</button>
+                  <button type="button" class="k-btn k-diopter py-1" data-diopter=".50">.50</button>
+                  <button type="button" class="k-btn k-diopter py-1" data-diopter=".75">.75</button>
+                  <button type="button" class="k-btn k-diopter py-1" data-diopter=".00">.00</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ========================================================= -->
+          <!-- KHU VỰC ĐIỀU HƯỚNG TÁCH BIỆT: BƯỚC TRƯỚC & BƯỚC TIẾP THEO -->
+          <!-- ========================================================= -->
+          <div class="flex items-center space-x-1.5 pt-1 border-t border-slate-200">
+            <!-- Nút Bước Trước -->
+            <button id="btn-prev-step" type="button"
+              class="py-2 px-2.5 bg-slate-200 hover:bg-slate-300 active:bg-slate-400 text-slate-700 font-bold rounded-lg text-[11px] sm:text-xs touch-press flex items-center space-x-1 flex-shrink-0">
+              <span>← Trước</span>
+            </button>
+
+            <!-- NÚT BƯỚC TIẾP THEO TÁCH BIỆT RIÊNG -->
+            <button id="btn-next-step" type="button"
+              class="flex-1 py-2 px-3 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold rounded-lg text-xs sm:text-sm shadow-md shadow-blue-500/25 touch-press flex items-center justify-center space-x-1 transition-all">
+              <span id="btn-next-label">Bước Tiếp Theo</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3">
+                </path>
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================== -->
+    <!-- MÀN HÌNH 4: FORM HOÀN CHỈNH (FULL RESULT VIEW) -->
+    <!-- ============================================== -->
+    <section id="screen-full-form" class="app-screen hidden flex-1 flex flex-col space-y-3">
+      <!-- Header thông tin ca hoàn chỉnh -->
+      <div
+        class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
+        <div>
+          <span class="text-[10px] sm:text-xs font-bold text-emerald-600 uppercase tracking-wider block">Phiếu Tổng Hợp
+            Hoàn Chỉnh</span>
+          <h2 id="full-patient-name" class="text-sm sm:text-lg font-extrabold text-slate-900">--</h2>
+        </div>
+        <div class="flex items-center space-x-2">
+          <span id="full-case-time"
+            class="text-[11px] text-slate-500 font-mono bg-slate-100 px-2 py-0.5 rounded">--</span>
+          <button id="btn-back-to-stepper" type="button"
+            class="py-1.5 px-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xs touch-press shadow-sm flex items-center space-x-1">
+            <span>✏️ Điền tiếp</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Tab chuyển đổi giữa 2 phiếu (Chủ quan / Skiascopy) -->
+      <div class="flex space-x-1.5 bg-slate-200 p-1 rounded-xl">
+        <button id="btn-switch-full-chuquan" type="button"
+          class="flex-1 py-1.5 px-2 rounded-lg text-xs font-bold bg-blue-600 text-white shadow-sm transition-all">
+          📋 Phiếu Chủ Quan
+        </button>
+        <button id="btn-switch-full-skiascopy" type="button"
+          class="flex-1 py-1.5 px-2 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all">
+          👁️ Phiếu Skiascopy
+        </button>
+      </div>
+
+      <!-- Container Bảng Form Hoàn Chỉnh (Render bằng JS) -->
+      <div id="full-form-table-container" class="flex-1">
+        <!-- Render bảng y khoa giống giấy gốc bằng JS -->
+      </div>
+
+      <!-- Footer Buttons -->
+      <div class="flex items-center justify-between pt-1">
+        <button id="btn-home-from-full" type="button"
+          class="py-2 px-3.5 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-xl text-xs touch-press shadow flex items-center space-x-1">
+          <span>🏠 Trở Về</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- JAVASCRIPT MODULES -->
+  <script src="js/config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
