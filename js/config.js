@@ -107,15 +107,15 @@ const FORMS_CONFIG = {
       { id: 'skia_9', group: 'KINH TUYẾN 1', label: 'Kinh tuyến 1', placeholderMP: 'Nhập KT1...', placeholderMT: 'Nhập KT1...' },
 
       // PHẦN 4: ĐIỂM TRUNG HÒA
-      { id: 'skia_10', group: 'ĐIỂM TRUNG HÒA', label: 'Kinh tuyến 1', placeholderMP: 'Nhập KT1...', placeholderMT: 'Nhập KT1...' },
-      { id: 'skia_11', group: 'ĐIỂM TRUNG HÒA', label: 'Kính cầu trung hòa', placeholderMP: 'Nhập kính cầu...', placeholderMT: 'Nhập kính cầu...' },
-      { id: 'skia_12', group: 'ĐIỂM TRUNG HÒA', label: 'Kinh tuyến 2', placeholderMP: 'Nhập KT2...', placeholderMT: 'Nhập KT2...' },
-      { id: 'skia_13', group: 'ĐIỂM TRUNG HÒA', label: 'Kính trụ trung hòa', placeholderMP: 'Nhập kính trụ...', placeholderMT: 'Nhập kính trụ...' },
-      { id: 'skia_13_b', group: 'ĐIỂM TRUNG HÒA', label: 'Điểm trung hòa', placeholderMP: 'Nhập điểm trung hòa...', placeholderMT: 'Nhập điểm trung hòa...' },
+      { id: 'skia_10', group: 'ĐIỂM TRUNG HÒA', label: 'Điểm trung hòa', placeholderMP: 'Nhập điểm trung hòa...', placeholderMT: 'Nhập điểm trung hòa...' },
+      { id: 'skia_11', group: 'ĐIỂM TRUNG HÒA', label: 'Kinh tuyến 1', placeholderMP: 'Nhập KT1...', placeholderMT: 'Nhập KT1...' },
+      { id: 'skia_12', group: 'ĐIỂM TRUNG HÒA', label: 'Kính cầu trung hòa', placeholderMP: 'Nhập kính cầu...', placeholderMT: 'Nhập kính cầu...' },
+      { id: 'skia_13', group: 'ĐIỂM TRUNG HÒA', label: 'Kinh tuyến 2', placeholderMP: 'Nhập KT2...', placeholderMT: 'Nhập KT2...' },
+      { id: 'skia_14', group: 'ĐIỂM TRUNG HÒA', label: 'Kính trụ trung hòa', placeholderMP: 'Nhập kính trụ...', placeholderMT: 'Nhập kính trụ...' },
 
       // PHẦN 5: KẾT LUẬN
-      { id: 'skia_14', group: 'KẾT LUẬN', label: 'CT CẦU TRỤ TRUNG HÒA', placeholderMP: 'Nhập CT cầu trụ...', placeholderMT: 'Nhập CT cầu trụ...' },
-      { id: 'skia_15', group: 'KẾT LUẬN', label: 'ĐỘ KHÚC XẠ CỦA MẮT', placeholderMP: 'Nhập độ khúc xạ...', placeholderMT: 'Nhập độ khúc xạ...' }
+      { id: 'skia_15', group: 'KẾT LUẬN', label: 'CT CẦU TRỤ TRUNG HÒA', placeholderMP: 'Nhập CT cầu trụ...', placeholderMT: 'Nhập CT cầu trụ...' },
+      { id: 'skia_16', group: 'KẾT LUẬN', label: 'ĐỘ KHÚC XẠ CỦA MẮT', placeholderMP: 'Nhập độ khúc xạ...', placeholderMT: 'Nhập độ khúc xạ...' }
     ]
   }
 };
