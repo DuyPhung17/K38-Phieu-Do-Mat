@@ -817,7 +817,7 @@ const App = {
           </div>
           <div class="flex items-center space-x-1.5 mt-1">
             ${countCQ > 0 ? `<span class="text-[10px] bg-blue-50 text-blue-700 font-semibold px-1.5 py-0.5 rounded border border-blue-200">📋 Chủ quan: ${countCQ}/17</span>` : ''}
-            ${countSK > 0 ? `<span class="text-[10px] bg-indigo-50 text-indigo-700 font-semibold px-1.5 py-0.5 rounded border border-indigo-200">👁️ Skiascopy: ${countSK}/15</span>` : ''}
+            ${countSK > 0 ? `<span class="text-[10px] bg-indigo-50 text-indigo-700 font-semibold px-1.5 py-0.5 rounded border border-indigo-200">👁️ Skiascopy: ${countSK}/${FORMS_CONFIG.skiascopy.steps.length}</span>` : ''}
             ${countCQ === 0 && countSK === 0 ? `<span class="text-[10px] text-slate-500 italic">Chưa điền bước nào</span>` : ''}
           </div>
         </div>

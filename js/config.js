@@ -111,6 +111,7 @@ const FORMS_CONFIG = {
       { id: 'skia_11', group: 'ĐIỂM TRUNG HÒA', label: 'Kính cầu trung hòa', placeholderMP: 'Nhập kính cầu...', placeholderMT: 'Nhập kính cầu...' },
       { id: 'skia_12', group: 'ĐIỂM TRUNG HÒA', label: 'Kinh tuyến 2', placeholderMP: 'Nhập KT2...', placeholderMT: 'Nhập KT2...' },
       { id: 'skia_13', group: 'ĐIỂM TRUNG HÒA', label: 'Kính trụ trung hòa', placeholderMP: 'Nhập kính trụ...', placeholderMT: 'Nhập kính trụ...' },
+      { id: 'skia_13_b', group: 'ĐIỂM TRUNG HÒA', label: 'Điểm trung hòa', placeholderMP: 'Nhập điểm trung hòa...', placeholderMT: 'Nhập điểm trung hòa...' },
 
       // PHẦN 5: KẾT LUẬN
       { id: 'skia_14', group: 'KẾT LUẬN', label: 'CT CẦU TRỤ TRUNG HÒA', placeholderMP: 'Nhập CT cầu trụ...', placeholderMT: 'Nhập CT cầu trụ...' },
