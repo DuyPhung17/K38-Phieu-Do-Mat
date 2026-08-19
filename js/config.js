@@ -36,71 +36,85 @@ const FORMS_CONFIG = {
     icon: '👁️',
     steps: [
       // PHẦN 1: KHẢO SÁT KINH TUYẾN 180
-      { 
-        id: 'skia_1', 
-        group: 'KHẢO SÁT KINH TUYẾN 180', 
-        label: 'Chiều di chuyển', 
-        options: ['Thuận', 'Ngược'],
-        placeholderMP: 'Thuận / Ngược...', 
-        placeholderMT: 'Thuận / Ngược...' 
+      {
+        id: 'skia_180_ktm',
+        group: 'KHẢO SÁT KINH TUYẾN 180',
+        label: 'Kinh tuyến mới (nếu có)',
+        placeholderMP: 'Nhập KT mới (MP)...',
+        placeholderMT: 'Nhập KT mới (MT)...'
       },
-      { 
-        id: 'skia_2', 
-        group: 'KHẢO SÁT KINH TUYẾN 180', 
-        label: 'Mức độ sáng', 
+      {
+        id: 'skia_1',
+        group: 'KHẢO SÁT KINH TUYẾN 180',
+        label: 'Chiều di chuyển',
+        options: ['Thuận', 'Nghịch'],
+        placeholderMP: 'Thuận / Nghịch...',
+        placeholderMT: 'Thuận / Nghịch...'
+      },
+      {
+        id: 'skia_2',
+        group: 'KHẢO SÁT KINH TUYẾN 180',
+        label: 'Mức độ sáng',
         options: ['Sáng', 'Mờ'],
-        placeholderMP: 'Sáng / Mờ...', 
-        placeholderMT: 'Sáng / Mờ...' 
+        placeholderMP: 'Sáng / Mờ...',
+        placeholderMT: 'Sáng / Mờ...'
       },
-      { 
-        id: 'skia_3', 
-        group: 'KHẢO SÁT KINH TUYẾN 180', 
-        label: 'Tốc độ', 
+      {
+        id: 'skia_3',
+        group: 'KHẢO SÁT KINH TUYẾN 180',
+        label: 'Tốc độ',
         options: ['Nhanh', 'Chậm'],
-        placeholderMP: 'Nhanh / Chậm...', 
-        placeholderMT: 'Nhanh / Chậm...' 
+        placeholderMP: 'Nhanh / Chậm...',
+        placeholderMT: 'Nhanh / Chậm...'
       },
-      { 
-        id: 'skia_4', 
-        group: 'KHẢO SÁT KINH TUYẾN 180', 
-        label: 'Độ rộng', 
+      {
+        id: 'skia_4',
+        group: 'KHẢO SÁT KINH TUYẾN 180',
+        label: 'Độ rộng',
         options: ['Rộng', 'Hẹp'],
-        placeholderMP: 'Rộng / Hẹp...', 
-        placeholderMT: 'Rộng / Hẹp...' 
+        placeholderMP: 'Rộng / Hẹp...',
+        placeholderMT: 'Rộng / Hẹp...'
       },
 
       // PHẦN 2: KHẢO SÁT KINH TUYẾN 90
-      { 
-        id: 'skia_5', 
-        group: 'KHẢO SÁT KINH TUYẾN 90', 
-        label: 'Chiều di chuyển', 
-        options: ['Thuận', 'Ngược'],
-        placeholderMP: 'Thuận / Ngược...', 
-        placeholderMT: 'Thuận / Ngược...' 
+      {
+        id: 'skia_90_ktm',
+        group: 'KHẢO SÁT KINH TUYẾN 90',
+        label: 'Kinh tuyến mới (nếu có)',
+        placeholderMP: 'Nhập KT mới (MP)...',
+        placeholderMT: 'Nhập KT mới (MT)...'
       },
-      { 
-        id: 'skia_6', 
-        group: 'KHẢO SÁT KINH TUYẾN 90', 
-        label: 'Mức độ sáng', 
+      {
+        id: 'skia_5',
+        group: 'KHẢO SÁT KINH TUYẾN 90',
+        label: 'Chiều di chuyển',
+        options: ['Thuận', 'Nghịch'],
+        placeholderMP: 'Thuận / Nghịch...',
+        placeholderMT: 'Thuận / Nghịch...'
+      },
+      {
+        id: 'skia_6',
+        group: 'KHẢO SÁT KINH TUYẾN 90',
+        label: 'Mức độ sáng',
         options: ['Sáng', 'Mờ'],
-        placeholderMP: 'Sáng / Mờ...', 
-        placeholderMT: 'Sáng / Mờ...' 
+        placeholderMP: 'Sáng / Mờ...',
+        placeholderMT: 'Sáng / Mờ...'
       },
-      { 
-        id: 'skia_7', 
-        group: 'KHẢO SÁT KINH TUYẾN 90', 
-        label: 'Tốc độ', 
+      {
+        id: 'skia_7',
+        group: 'KHẢO SÁT KINH TUYẾN 90',
+        label: 'Tốc độ',
         options: ['Nhanh', 'Chậm'],
-        placeholderMP: 'Nhanh / Chậm...', 
-        placeholderMT: 'Nhanh / Chậm...' 
+        placeholderMP: 'Nhanh / Chậm...',
+        placeholderMT: 'Nhanh / Chậm...'
       },
-      { 
-        id: 'skia_8', 
-        group: 'KHẢO SÁT KINH TUYẾN 90', 
-        label: 'Độ rộng', 
+      {
+        id: 'skia_8',
+        group: 'KHẢO SÁT KINH TUYẾN 90',
+        label: 'Độ rộng',
         options: ['Rộng', 'Hẹp'],
-        placeholderMP: 'Rộng / Hẹp...', 
-        placeholderMT: 'Rộng / Hẹp...' 
+        placeholderMP: 'Rộng / Hẹp...',
+        placeholderMT: 'Rộng / Hẹp...'
       },
 
       // PHẦN 3: KINH TUYẾN 1
